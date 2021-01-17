@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 
 import smallLogo from '../../assets/just_logo.svg';
 import logo from '../../assets/logo.svg';
