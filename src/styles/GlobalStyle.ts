@@ -24,6 +24,10 @@ export default createGlobalStyle`
   :root {
     font-size: 60%;
     --white: #FFF;
+    --green: #94F2CB;
+    --green-dark: #71CCA6;
+    --main-green: #57E1A7;
+    --gray: #383838;
   }
   @media (min-width: 700px) {
     :root {
