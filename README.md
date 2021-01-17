@@ -11,5 +11,4 @@ abordagem permite agilizar o recrutamento, e ao mesmo tempo, o
 recrutador consegue avaliar algumas softskills antes mesmo da
 entrevista.
 
-[**Demo:**]()
-
+[**Link da demo**](https://elevator-io.netlify.app)
