@@ -11,6 +11,7 @@ import {
   CheckIcon,
   CompanyIcon,
   TerminalIcon,
+  Footer,
 } from './styles';
 
 export default function Landing() {
@@ -21,11 +22,11 @@ export default function Landing() {
   return (
     <Container>
       <Header>
-        <img src={smallLogo} alt="Elevator logo" />
+        <img src={logo} alt="Elevator logo" />
         <button onClick={handleNavigateToSingIn}>Entrar</button>
       </Header>
       <Content>
-        <img src={logo} alt="Elevator logo" />
+        <img src={smallLogo} alt="Elevator logo" />
         <p>
           O Elevator é uma plataforma de recrutamento para profissionais de
           tecnologia (Desenvolvedores e Designers). Utilizamos um pitch de 1 min
@@ -76,6 +77,11 @@ export default function Landing() {
           </FeaturesGroup>
         </Features>
       </Content>
+      <Footer>
+        <a href="https://unsplash.com/photos/QckxruozjRg">
+          Photo by Annie Spratt on Unsplash
+        </a>
+      </Footer>
     </Container>
   );
 }

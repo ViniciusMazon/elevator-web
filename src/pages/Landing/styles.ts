@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { CheckCircle, Terminal, TrendingUp } from '../../styles/Icons';
 
 import backgroundImage from '../../assets/background.png';
@@ -21,9 +21,13 @@ export const Container = styled.main`
 export const Header = styled.header`
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 88px;
 
+  > img {
+    width: 15rem;
+  }
   > button {
     width: 10rem;
     height: 34px;
@@ -42,6 +46,15 @@ export const Header = styled.header`
   }
 `;
 
+const neon = keyframes`
+ from {
+    filter: drop-shadow(0 0 0 var(--neon));
+  }
+  to {
+    filter: drop-shadow(0 0 15px var(--neon));
+  }
+`;
+
 export const Content = styled.article`
   height: 80%;
   display: flex;
@@ -50,7 +63,8 @@ export const Content = styled.article`
   align-items: center;
 
   > img {
-    width: 26.2rem;
+    width: 18rem;
+    animation: ${neon} 2.5s alternate infinite ease-in-out;
   }
 
   > p {
@@ -63,6 +77,9 @@ export const Content = styled.article`
   }
 
   @media (max-width: 900px) {
+    img {
+      margin-bottom: 80px;
+    }
     p {
       width: 100%;
     }
@@ -113,6 +130,16 @@ export const FeaturesGroup = styled.ul`
       }
       margin-bottom: 20px;
     }
+  }
+`;
+
+export const Footer = styled.footer`
+  width: 100%;
+  text-align: center;
+
+  > a {
+    color: var(--white);
+    font-size: 1rem;
   }
 `;
 
