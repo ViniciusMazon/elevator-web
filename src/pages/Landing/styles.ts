@@ -67,6 +67,10 @@ export const Content = styled.article`
     animation: ${neon} 2.5s alternate infinite ease-in-out;
   }
 
+  > h1 {
+    font-size: 2.5rem;
+  }
+
   > p {
     width: 80%;
     font-family: 'Montserrat', sans-serif;

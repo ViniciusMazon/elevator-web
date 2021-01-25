@@ -27,6 +27,7 @@ export default function Landing() {
       </Header>
       <Content>
         <img src={smallLogo} alt="Elevator logo" />
+        <h1>Suba para o próximo nível</h1>
         <p>
           O Elevator é uma plataforma de recrutamento para profissionais de
           tecnologia (Desenvolvedores e Designers). Utilizamos um pitch de 1 min
