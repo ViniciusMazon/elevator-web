@@ -1,1 +1,7 @@
-export { CheckCircle, Terminal, TrendingUp } from 'styled-icons/feather';
+export {
+  CheckCircle,
+  Terminal,
+  TrendingUp,
+  Eye,
+  EyeOff,
+} from 'styled-icons/feather';
