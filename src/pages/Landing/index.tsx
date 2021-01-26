@@ -19,7 +19,7 @@ export default function Landing() {
   const history = useHistory();
 
   function handleNavigateToSingIn() {
-    history.push('/sing-in');
+    history.push('/sign-in');
     return;
   }
 
