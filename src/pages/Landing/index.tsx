@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import smallLogo from '../../assets/just_logo.svg';
 import logo from '../../assets/logo.svg';
@@ -15,7 +16,10 @@ import {
 } from './styles';
 
 export default function Landing() {
+  const history = useHistory();
+
   function handleNavigateToSingIn() {
+    history.push('/sing-in');
     return;
   }
 

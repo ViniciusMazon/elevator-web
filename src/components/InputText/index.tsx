@@ -1,13 +1,13 @@
 import React from 'react';
 
+import { Container, Label } from './styles';
+
 interface InputTextData {
   label: string;
   placeholder: string;
   value: string;
   changeValue: React.Dispatch<React.SetStateAction<string>>;
 }
-
-import { Container, Label } from './styles';
 
 const InputText = ({
   label,
