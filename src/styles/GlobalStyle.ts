@@ -24,10 +24,13 @@ export default createGlobalStyle`
   :root {
     font-size: 60%;
     --white: #FFF;
+    --light-gray: #DDD;
+    --light-green: #93E1C1;
     --green: #94F2CB;
     --green-dark: #71CCA6;
     --main-green: #57E1A7;
     --gray: #383838;
+    --medium-gray: #666666;
     --neon: #71cca6;
   }
   @media (min-width: 700px) {
