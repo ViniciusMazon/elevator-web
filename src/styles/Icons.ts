@@ -4,4 +4,5 @@ export {
   TrendingUp,
   Eye,
   EyeOff,
+  ArrowLeft,
 } from 'styled-icons/feather';
