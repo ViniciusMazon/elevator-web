@@ -24,6 +24,7 @@ export default createGlobalStyle`
   :root {
     font-size: 60%;
     --white: #FFF;
+    --black: #000;
     --light-gray: #DDD;
     --light-green: #93E1C1;
     --green: #94F2CB;

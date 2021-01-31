@@ -14,7 +14,7 @@ import {
   Footer,
 } from './styles';
 
-export default function SingIn() {
+export default function SignIn() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [isRemembering, setIsRemembering] = React.useState(false);
@@ -58,7 +58,7 @@ export default function SingIn() {
 
       <Footer>
         <p>
-          Não possui uma conta? <Link to="#">Registre-se</Link>
+          Não possui uma conta? <Link to="/sign-up/i-am">Registre-se</Link>
         </p>
       </Footer>
     </Container>
