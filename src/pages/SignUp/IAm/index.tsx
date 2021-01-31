@@ -20,13 +20,12 @@ export default function IAm() {
   }
 
   function handleSelect(isCompany: boolean) {
-    isCompany ? setIAm('company') : setIAm('developer/designer');
+    isCompany ? setIAm('company') : setIAm('developer-designer');
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // history.push('');
-    console.log(iAm);
+    history.push(`/sign-up/form/${iAm}`);
   }
 
   return (

@@ -49,8 +49,18 @@ export const Card = styled.form`
 
   position: relative;
 
+  > h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 28px;
+    line-height: 27px;
+  }
   button + button {
     margin-top: 30px;
+  }
+  div + div {
+    margin-top: 20px;
   }
 `;
 
@@ -104,6 +114,58 @@ export const Option = styled.button.attrs((props) => ({
   &:hover {
     background: var(--green-dark);
     color: var(--white);
+  }
+`;
+
+export const PolicyTermGroup = styled.div`
+  width: 100%;
+  align-self: flex-end;
+
+  display: flex;
+  align-items: center;
+
+  > input[type='checkbox'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--neon);
+    border-radius: 100%;
+    box-shadow: none;
+
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type='checkbox']:checked {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--neon);
+    background: var(--neon);
+    border-radius: 100%;
+    box-shadow: none;
+
+    outline: none;
+    cursor: pointer;
+  }
+
+  > label {
+    width: 250px;
+    font-size: 1.4rem;
+    color: var(--medium-gray);
+    padding-left: 9px;
+
+    a {
+      font-weight: 500;
+      color: var(--main-green);
+      text-decoration: none;
+    }
   }
 `;
 
