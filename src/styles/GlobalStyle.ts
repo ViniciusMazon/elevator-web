@@ -32,6 +32,7 @@ export default createGlobalStyle`
     --main-green: #57E1A7;
     --gray: #383838;
     --medium-gray: #666666;
+    --dark-gray: #515151;
     --neon: #71cca6;
   }
   @media (min-width: 700px) {
