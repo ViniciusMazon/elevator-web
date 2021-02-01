@@ -1,6 +1,10 @@
 import styled, { keyframes, css } from 'styled-components';
 import { Briefcase, Award, User, LogOut } from '../../styles/Icons';
 
+interface Props {
+  isActive?: boolean;
+}
+
 export const Container = styled.nav`
   height: 100vh;
   width: 70px;
@@ -59,12 +63,22 @@ const iconStyle = css`
   stroke-width: 1px;
 
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
 
   &:hover {
     stroke-width: 2px;
     stroke: var(--neon);
   }
+`;
+
+const iconStyleActive = css`
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  stroke: var(--neon);
+  stroke-width: 2px;
+
+  cursor: pointer;
 `;
 
 export const OpportunitiesIcon = styled(Briefcase)`
@@ -75,6 +89,15 @@ export const MyOpportunitiesIcon = styled(Award)`
 `;
 export const ProfileIcon = styled(User)`
   ${iconStyle}
+`;
+export const OpportunitiesIconActive = styled(Briefcase)`
+  ${iconStyleActive}
+`;
+export const MyOpportunitiesIconActive = styled(Award)`
+  ${iconStyleActive}
+`;
+export const ProfileIconActive = styled(User)`
+  ${iconStyleActive}
 `;
 export const SignOutIcon = styled(LogOut)`
   ${iconStyle}
