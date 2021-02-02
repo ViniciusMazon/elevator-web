@@ -5,8 +5,13 @@ import logo from '../../assets/just_logo.svg';
 
 import {
   Container,
+  MenuIcon,
+  MenuIconClose,
   Header,
   Options,
+  Option,
+  OptionLabel,
+  OptionLabelActive,
   Footer,
   OpportunitiesIcon,
   MyOpportunitiesIcon,
@@ -20,6 +25,17 @@ import {
 const MenuBar: React.FC = () => {
   const history = useHistory();
   const [isActive, setIsActive] = React.useState(1);
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  React.useEffect(() => {
+    if (window.innerWidth <= 900) {
+      setIsVisible(false);
+    }
+  }, []);
+
+  function handleToggleVisibility() {
+    setIsVisible(!isVisible);
+  }
 
   function handleSwitchOption(optionNumber: number) {
     setIsActive(optionNumber);
@@ -47,29 +63,59 @@ const MenuBar: React.FC = () => {
     <Container>
       <Header>
         <img src={logo} alt="Logo" />
+        {isVisible ? (
+          <MenuIconClose onClick={handleToggleVisibility} />
+        ) : (
+          <MenuIcon onClick={handleToggleVisibility} />
+        )}
       </Header>
 
-      <Options>
-        {isActive === 1 ? (
-          <OpportunitiesIconActive onClick={() => handleSwitchOption(1)} />
-        ) : (
-          <OpportunitiesIcon onClick={() => handleSwitchOption(1)} />
-        )}
-        {isActive === 2 ? (
-          <MyOpportunitiesIconActive onClick={() => handleSwitchOption(2)} />
-        ) : (
-          <MyOpportunitiesIcon onClick={() => handleSwitchOption(2)} />
-        )}
-        {isActive === 3 ? (
-          <ProfileIconActive onClick={() => handleSwitchOption(3)} />
-        ) : (
-          <ProfileIcon onClick={() => handleSwitchOption(3)} />
-        )}
-      </Options>
+      {isVisible && (
+        <>
+          <Options>
+            {isActive === 1 ? (
+              <Option onClick={() => handleSwitchOption(1)}>
+                <OpportunitiesIconActive />
+                <OptionLabelActive>Oportunidades</OptionLabelActive>
+              </Option>
+            ) : (
+              <Option onClick={() => handleSwitchOption(1)}>
+                <OpportunitiesIconActive />
+                <OptionLabel>Oportunidades</OptionLabel>
+              </Option>
+            )}
+            {isActive === 2 ? (
+              <Option onClick={() => handleSwitchOption(2)}>
+                <MyOpportunitiesIconActive />
+                <OptionLabelActive>Minhas oportunidades</OptionLabelActive>
+              </Option>
+            ) : (
+              <Option onClick={() => handleSwitchOption(2)}>
+                <MyOpportunitiesIcon />
+                <OptionLabel>Minhas oportunidades</OptionLabel>
+              </Option>
+            )}
+            {isActive === 3 ? (
+              <Option onClick={() => handleSwitchOption(3)}>
+                <ProfileIconActive />
+                <OptionLabelActive>Perfil</OptionLabelActive>
+              </Option>
+            ) : (
+              <Option onClick={() => handleSwitchOption(3)}>
+                <ProfileIcon />
+                <OptionLabel>Perfil</OptionLabel>
+              </Option>
+            )}
+          </Options>
 
-      <Footer>
-        <SignOutIcon onClick={handleSignOut} />
-      </Footer>
+          <Footer>
+            <Option onClick={handleSignOut}>
+              <SignOutIcon />
+              <OptionLabel>Sair</OptionLabel>
+            </Option>
+          </Footer>
+        </>
+      )}
     </Container>
   );
 };
