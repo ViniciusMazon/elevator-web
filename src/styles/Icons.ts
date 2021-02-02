@@ -9,4 +9,7 @@ export {
   Award,
   User,
   LogOut,
+  Menu,
 } from 'styled-icons/feather';
+
+export { Close } from 'styled-icons/evil';
