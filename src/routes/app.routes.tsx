@@ -1,17 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Landing from '../pages/Landing';
-import SignIn from '../pages/SignIn';
-import SingUp from './singUp.routes';
+import Home from '../pages/Home';
 
-export default function Routes() {
+export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/sign-in" component={SignIn} />
-        <Route path="/sign-up" component={SingUp} />
+        <Route exact path="/" component={Home} />
       </Switch>
     </BrowserRouter>
   );
