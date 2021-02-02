@@ -18,8 +18,8 @@ import {
 export default function Landing() {
   const history = useHistory();
 
-  function handleNavigateToSingIn() {
-    history.push('/sign-in');
+  function handleNavigateToSignIn() {
+    history.push('/');
     return;
   }
 
@@ -27,7 +27,7 @@ export default function Landing() {
     <Container>
       <Header>
         <img src={logo} alt="Elevator logo" />
-        <button onClick={handleNavigateToSingIn}>Entrar</button>
+        <button onClick={handleNavigateToSignIn}>Entrar</button>
       </Header>
       <Content>
         <img src={smallLogo} alt="Elevator logo" />

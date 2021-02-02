@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { useAuth } from '../../context/auth';
+
 import InputText from '../../components/InputText';
 import InputPassword from '../../components/InputPassword';
 
@@ -15,13 +17,17 @@ import {
 } from './styles';
 
 export default function SignIn() {
+  const { signIn } = useAuth();
+
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [isRemembering, setIsRemembering] = React.useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!email || !password) return;
     console.log(email, password, isRemembering);
+    signIn(email, password);
   }
 
   return (

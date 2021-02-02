@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { useAuth } from '../../context/auth';
+
 import logo from '../../assets/just_logo.svg';
 
 import {
@@ -24,6 +26,9 @@ import {
 
 const MenuBar: React.FC = () => {
   const history = useHistory();
+
+  const { signOut } = useAuth();
+
   const [isActive, setIsActive] = React.useState(1);
   const [isVisible, setIsVisible] = React.useState(true);
 
@@ -56,6 +61,7 @@ const MenuBar: React.FC = () => {
   }
 
   function handleSignOut() {
+    signOut();
     console.log('signout');
   }
 

@@ -3,15 +3,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Landing from '../pages/Landing';
 import SignIn from '../pages/SignIn';
-import SingUp from './singUp.routes';
+import SignUp from './signUp.routes';
 
 export default function AuthRoutes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/sign-in" component={SignIn} />
-        <Route path="/sign-up" component={SingUp} />
+        <Route exact path="/" component={SignIn} />
+        <Route path="/welcome" component={Landing} />
+        <Route path="/sign-up" component={SignUp} />
       </Switch>
     </BrowserRouter>
   );
