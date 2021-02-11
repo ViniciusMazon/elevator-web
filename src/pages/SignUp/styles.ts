@@ -12,8 +12,9 @@ export const Container = styled.main`
   padding: 44px 100px 0 100px;
 
   @media (max-width: 900px) {
+    height: 130%;
     background: url(${backgroundImage}) no-repeat center fixed;
-    padding: 20px 20px 0 20px;
+    padding: 20px 20px 10px 20px;
   }
 `;
 
@@ -37,11 +38,11 @@ export const Header = styled.header`
 `;
 
 export const Card = styled.form`
+  max-width: 400px;
   margin: 0 auto;
   background: var(--white);
   border-radius: 6px;
-  max-width: 400px;
-  padding: 56px;
+  padding: 40px;
 
   display: flex;
   flex-direction: column;
@@ -61,6 +62,10 @@ export const Card = styled.form`
   }
   div + div {
     margin-top: 20px;
+  }
+
+  @media (max-width: 900px) {
+    margin: 0 8px;
   }
 `;
 
