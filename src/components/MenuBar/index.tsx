@@ -86,7 +86,7 @@ const MenuBar: React.FC = () => {
               </Option>
             ) : (
               <Option onClick={() => handleSwitchOption(1)}>
-                <OpportunitiesIconActive />
+                <OpportunitiesIcon />
                 <OptionLabel>Oportunidades</OptionLabel>
               </Option>
             )}

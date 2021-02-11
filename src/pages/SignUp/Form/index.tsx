@@ -1,7 +1,10 @@
 import React from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 
+import api from '../../../services/api';
+
 import InputText from '../../../components/InputText';
+import InputSelect from '../../../components/InputSelect';
 import InputPassword from '../../../components/InputPassword';
 
 import logo from '../../../assets/just_logo.svg';
@@ -24,10 +27,11 @@ export default function Form() {
   const params = useParams() as Params;
 
   const [name, setName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
+  const [lastname, setLastname] = React.useState('');
   const [cnpj, setCnpj] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [role, setRole] = React.useState('');
 
   const [agreed, setAgreed] = React.useState(false);
 
@@ -35,29 +39,37 @@ export default function Form() {
     history.goBack();
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!agreed) return;
 
     let data = {};
 
-    if (params.whoAmI === 'company') {
-      data = {
-        name,
-        cnpj,
-        email,
-        password,
-      };
-    } else {
-      data = {
-        name,
-        lastName,
-        email,
-        password,
-      };
-    }
+    try {
+      if (params.whoAmI === 'company') {
+        data = {
+          name,
+          cnpj,
+          email,
+          password,
+        };
 
-    console.log(data);
+        await api.post('/sing-up/company', data);
+      } else {
+        data = {
+          name,
+          lastname,
+          email,
+          password,
+          role,
+        };
+
+        await api.post('/sing-up/professional', data);
+      }
+    } catch (err) {
+      alert('Ops... ocorreu um erro, tente novamente mais tarde!');
+      console.log(err);
+    }
   }
 
   return (
@@ -89,9 +101,20 @@ export default function Form() {
         ) : (
           <InputText
             label={'Sobrenome'}
-            value={lastName}
-            changeValue={setLastName}
+            value={lastname}
+            changeValue={setLastname}
             placeholder={'Digite seu sobrenome'}
+          />
+        )}
+
+        {params.whoAmI === 'developer-designer' && (
+          <InputSelect
+            label={'Sua especialidade'}
+            changeValue={setRole}
+            options={[
+              { value: 'developer', label: 'Developer' },
+              { value: 'designer', label: 'Designer' },
+            ]}
           />
         )}
 
