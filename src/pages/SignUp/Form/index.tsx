@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
+import { BounceLoader } from 'react-spinners';
 
 import api from '../../../services/api';
 import { useAlert } from '../../../context/alert';
@@ -28,6 +29,8 @@ export default function Form() {
   const params = useParams() as Params;
   const { setAlert } = useAlert();
 
+  const [isSpinning, setIsSpinning] = React.useState(false);
+
   const [name, setName] = React.useState('');
   const [lastname, setLastname] = React.useState('');
   const [cnpj, setCnpj] = React.useState('');
@@ -43,11 +46,18 @@ export default function Form() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!agreed) return;
+    if (!agreed) {
+      setAlert({
+        type: 'warning',
+        message:
+          'Você precisa aceitar o Termo de Uso e as Políticas de Privacidade antes de continuar',
+      });
+      return;
+    }
 
     let data = {};
     let response;
-
+    setIsSpinning(true);
     try {
       if (params.whoAmI === 'company') {
         data = {
@@ -56,7 +66,6 @@ export default function Form() {
           email,
           password,
         };
-
         response = await api.post('/sing-up/company', data);
       } else {
         data = {
@@ -66,7 +75,6 @@ export default function Form() {
           password,
           role,
         };
-
         response = await api.post('/sing-up/professional', data);
       }
 
@@ -76,12 +84,14 @@ export default function Form() {
           message: 'Cadastro efetuado com sucesso!',
         });
       }
+      setIsSpinning(false);
     } catch (err) {
       setAlert({
         type: 'error',
         message: 'Ops... ocorreu um erro, tente novamente mais tarde!',
       });
       console.log(err.message);
+      setIsSpinning(false);
     }
   }
 
@@ -157,7 +167,16 @@ export default function Form() {
           </label>
         </PolicyTermGroup>
 
-        <SubmitButton>Enviar</SubmitButton>
+        {isSpinning ? (
+          <BounceLoader
+            size={50}
+            color={'#71CCA6'}
+            css={'margin: 30px auto 0 auto'}
+            loading={isSpinning}
+          />
+        ) : (
+          <SubmitButton>'Enviar'</SubmitButton>
+        )}
       </Card>
     </Container>
   );

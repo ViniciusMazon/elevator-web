@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BounceLoader } from 'react-spinners';
 
 import { useAuth } from '../../context/auth';
 import { useAlert } from '../../context/alert';
@@ -21,6 +22,8 @@ export default function SignIn() {
   const { signIn } = useAuth();
   const { setAlert } = useAlert();
 
+  const [isSpinning, setIsSpinning] = React.useState(false);
+
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [isRemembering, setIsRemembering] = React.useState(false);
@@ -36,6 +39,7 @@ export default function SignIn() {
       return;
     }
 
+    setIsSpinning(true);
     const isCorrect = await signIn(email, password);
     if (!isCorrect) {
       setAlert({
@@ -43,6 +47,7 @@ export default function SignIn() {
         message: 'Usuário ou senha inválidos',
       });
     }
+    setIsSpinning(false);
   }
 
   return (
@@ -74,7 +79,16 @@ export default function SignIn() {
           <label htmlFor="remember">Lembre-se de mim</label>
         </RememberGroup>
 
-        <SubmitButton>Entrar</SubmitButton>
+        {isSpinning ? (
+          <BounceLoader
+            size={50}
+            color={'#71CCA6'}
+            css={'margin: 30px auto 0 auto'}
+            loading={isSpinning}
+          />
+        ) : (
+          <SubmitButton>'Entrar'</SubmitButton>
+        )}
       </Card>
 
       <Footer>
