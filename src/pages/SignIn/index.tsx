@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 import { BounceLoader } from 'react-spinners';
 
 import { useAuth } from '../../context/auth';
@@ -28,6 +29,11 @@ export default function SignIn() {
   const [password, setPassword] = React.useState('');
   const [isRemembering, setIsRemembering] = React.useState(false);
 
+  const singInSchema = Yup.object().shape({
+    email: Yup.string().required().min(3).max(25),
+    password: Yup.string().required().min(8).max(25),
+  });
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
@@ -40,6 +46,16 @@ export default function SignIn() {
     }
 
     setIsSpinning(true);
+    const isValid = await singInSchema.isValid({ email, password });
+    if (!isValid) {
+      setAlert({
+        type: 'warning',
+        message: 'Verifique as informações inseridas',
+      });
+      setIsSpinning(false);
+      return;
+    }
+
     const isCorrect = await signIn(email, password);
     if (!isCorrect) {
       setAlert({

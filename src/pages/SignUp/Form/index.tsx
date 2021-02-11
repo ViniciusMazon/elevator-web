@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { BounceLoader } from 'react-spinners';
+import * as Yup from 'yup';
 
 import api from '../../../services/api';
 import { useAlert } from '../../../context/alert';
@@ -40,6 +41,22 @@ export default function Form() {
 
   const [agreed, setAgreed] = React.useState(false);
 
+  const singUpProfessionalSchema = Yup.object().shape({
+    name: Yup.string().required().min(3).max(25),
+    lastname: Yup.string().required().min(3).max(25),
+    role: Yup.string().required(),
+    email: Yup.string().required().min(3).max(25),
+    password: Yup.string().required().min(8).max(25),
+  });
+
+  const singUpCompanySchema = Yup.object().shape({
+    name: Yup.string().required().min(3).max(25),
+    cnpj: Yup.string().required().min(18).max(18),
+    role: Yup.string().required(),
+    email: Yup.string().required().min(3).max(25),
+    password: Yup.string().required().min(8).max(25),
+  });
+
   function handleNavigateGoBack() {
     history.goBack();
   }
@@ -56,8 +73,10 @@ export default function Form() {
     }
 
     let data = {};
+    let isValid = false;
     let response;
     setIsSpinning(true);
+
     try {
       if (params.whoAmI === 'company') {
         data = {
@@ -66,6 +85,16 @@ export default function Form() {
           email,
           password,
         };
+
+        isValid = await singUpCompanySchema.isValid(data);
+        if (!isValid) {
+          setAlert({
+            type: 'warning',
+            message: 'Verifique as informações inseridas',
+          });
+          setIsSpinning(false);
+          return;
+        }
         response = await api.post('/sing-up/company', data);
       } else {
         data = {
@@ -75,6 +104,15 @@ export default function Form() {
           password,
           role,
         };
+        isValid = await singUpProfessionalSchema.isValid(data);
+        if (!isValid) {
+          setAlert({
+            type: 'warning',
+            message: 'Verifique as informações inseridas',
+          });
+          setIsSpinning(false);
+          return;
+        }
         response = await api.post('/sing-up/professional', data);
       }
 

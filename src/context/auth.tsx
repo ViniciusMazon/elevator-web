@@ -41,7 +41,7 @@ export function AuthProvider({ children }: Props) {
     // const response = await api.post('/sign-in', { email, password });
     // setUser(response.data.user);
 
-    if (password !== '123') {
+    if (password !== '123456789') {
       console.log('Usuário ou senha inválidos');
       return false;
     }
