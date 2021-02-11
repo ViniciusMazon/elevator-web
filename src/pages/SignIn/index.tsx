@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../context/auth';
+import { useAlert } from '../../context/alert';
 
 import InputText from '../../components/InputText';
 import InputPassword from '../../components/InputPassword';
@@ -18,16 +19,30 @@ import {
 
 export default function SignIn() {
   const { signIn } = useAuth();
+  const { setAlert } = useAlert();
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [isRemembering, setIsRemembering] = React.useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email || !password) return;
-    console.log(email, password, isRemembering);
-    signIn(email, password);
+
+    if (!email || !password) {
+      setAlert({
+        type: 'error',
+        message: 'Informe seu email e senha',
+      });
+      return;
+    }
+
+    const isCorrect = await signIn(email, password);
+    if (!isCorrect) {
+      setAlert({
+        type: 'error',
+        message: 'Usuário ou senha inválidos',
+      });
+    }
   }
 
   return (

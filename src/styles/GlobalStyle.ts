@@ -37,6 +37,7 @@ export default createGlobalStyle`
     --dark-gray-transparency: rgba(81,81,81,0.92);
     --neon: #71cca6;
   }
+
   @media (min-width: 700px) {
     :root {
       font-size: 62.5%;

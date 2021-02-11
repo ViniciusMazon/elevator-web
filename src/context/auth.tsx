@@ -9,7 +9,7 @@ interface AuthContextData {
   signed: boolean;
   user: User | null;
   loading: boolean;
-  signIn(email: string, password: string): Promise<void>;
+  signIn(email: string, password: string): Promise<Boolean>;
   signOut(): void;
 }
 
@@ -41,6 +41,11 @@ export function AuthProvider({ children }: Props) {
     // const response = await api.post('/sign-in', { email, password });
     // setUser(response.data.user);
 
+    if (password !== '123') {
+      console.log('Usuário ou senha inválidos');
+      return false;
+    }
+
     const user = {
       name: email,
       email: email,
@@ -50,7 +55,7 @@ export function AuthProvider({ children }: Props) {
     localStorage.setItem('@EAuth:user', JSON.stringify(user));
     localStorage.setItem('@EAuth:token', 'bearer token');
     console.log('Fez login');
-
+    return true;
     // api.defaults.headers['Authorization'] = `${response.data.token}`;
     // localStorage.setItem('@RNAuth:user', JSON.stringify(response.data.user));
     // localStorage.setItem('@RNAuth:token', response.data.token);

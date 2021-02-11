@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 
 import api from '../../../services/api';
+import { useAlert } from '../../../context/alert';
 
 import InputText from '../../../components/InputText';
 import InputSelect from '../../../components/InputSelect';
@@ -25,6 +26,7 @@ interface Params {
 export default function Form() {
   const history = useHistory();
   const params = useParams() as Params;
+  const { setAlert } = useAlert();
 
   const [name, setName] = React.useState('');
   const [lastname, setLastname] = React.useState('');
@@ -44,6 +46,7 @@ export default function Form() {
     if (!agreed) return;
 
     let data = {};
+    let response;
 
     try {
       if (params.whoAmI === 'company') {
@@ -54,7 +57,7 @@ export default function Form() {
           password,
         };
 
-        await api.post('/sing-up/company', data);
+        response = await api.post('/sing-up/company', data);
       } else {
         data = {
           name,
@@ -64,11 +67,21 @@ export default function Form() {
           role,
         };
 
-        await api.post('/sing-up/professional', data);
+        response = await api.post('/sing-up/professional', data);
+      }
+
+      if (response.status === 201) {
+        setAlert({
+          type: 'success',
+          message: 'Cadastro efetuado com sucesso!',
+        });
       }
     } catch (err) {
-      alert('Ops... ocorreu um erro, tente novamente mais tarde!');
-      console.log(err);
+      setAlert({
+        type: 'error',
+        message: 'Ops... ocorreu um erro, tente novamente mais tarde!',
+      });
+      console.log(err.message);
     }
   }
 
