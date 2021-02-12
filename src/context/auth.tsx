@@ -1,4 +1,5 @@
 import React from 'react';
+import api from '../services/api';
 
 interface User {
   name: string;
@@ -29,36 +30,25 @@ export function AuthProvider({ children }: Props) {
       const storageToken = localStorage.getItem('@EAuth:token');
       if (storageUser && storageToken) {
         setUser(JSON.parse(storageUser));
-        // api.defaults.headers['Authorization'] = `${storageToken}`;
+        api.defaults.headers['Authorization'] = `${storageToken}`;
       }
     }
     loadStorageData();
     setLoading(false);
-    console.log('Puxou local storage');
   }, []);
 
   async function signIn(email: string, password: string) {
-    // const response = await api.post('/sign-in', { email, password });
-    // setUser(response.data.user);
+    try {
+      const response = await api.post('/authenticate', { email, password });
+      setUser(response.data.user);
 
-    if (password !== '123456789') {
-      console.log('Usuário ou senha inválidos');
+      api.defaults.headers['Authorization'] = `${response.data.token}`;
+      localStorage.setItem('@EAuth:user', JSON.stringify(response.data.user));
+      localStorage.setItem('@EAuth:token', response.data.token);
+      return true;
+    } catch (err) {
       return false;
     }
-
-    const user = {
-      name: email,
-      email: email,
-    };
-
-    setUser(user);
-    localStorage.setItem('@EAuth:user', JSON.stringify(user));
-    localStorage.setItem('@EAuth:token', 'bearer token');
-    console.log('Fez login');
-    return true;
-    // api.defaults.headers['Authorization'] = `${response.data.token}`;
-    // localStorage.setItem('@RNAuth:user', JSON.stringify(response.data.user));
-    // localStorage.setItem('@RNAuth:token', response.data.token);
   }
 
   function signOut() {

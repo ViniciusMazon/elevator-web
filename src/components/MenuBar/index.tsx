@@ -62,7 +62,6 @@ const MenuBar: React.FC = () => {
 
   function handleSignOut() {
     signOut();
-    console.log('signout');
   }
 
   return (

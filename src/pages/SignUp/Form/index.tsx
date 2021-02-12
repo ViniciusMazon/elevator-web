@@ -128,7 +128,6 @@ export default function Form() {
         type: 'error',
         message: 'Ops... ocorreu um erro, tente novamente mais tarde!',
       });
-      console.log(err.message);
       setIsSpinning(false);
     }
   }
