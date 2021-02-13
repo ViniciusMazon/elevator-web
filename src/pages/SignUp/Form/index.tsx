@@ -123,6 +123,7 @@ export default function Form() {
         });
       }
       setIsSpinning(false);
+      history.push('/')
     } catch (err) {
       setAlert({
         type: 'error',
