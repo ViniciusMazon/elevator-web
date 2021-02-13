@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import smallLogo from '../../assets/just_logo.svg';
 import logo from '../../assets/logo.svg';
@@ -15,7 +16,10 @@ import {
 } from './styles';
 
 export default function Landing() {
-  function handleNavigateToSingIn() {
+  const history = useHistory();
+
+  function handleNavigateToSignIn() {
+    history.push('/');
     return;
   }
 
@@ -23,7 +27,7 @@ export default function Landing() {
     <Container>
       <Header>
         <img src={logo} alt="Elevator logo" />
-        <button onClick={handleNavigateToSingIn}>Entrar</button>
+        <button onClick={handleNavigateToSignIn}>Entrar</button>
       </Header>
       <Content>
         <img src={smallLogo} alt="Elevator logo" />

@@ -10,19 +10,18 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "axios": "^0.21.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-spinners": "^0.10.4",
+    "react-toastify": "^7.0.3",
     "styled-components": "^5.2.1",
     "styled-icons": "^10.25.0",
     "typescript": "^4.0.3",
-    "web-vitals": "^0.2.4"
-  },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
-    }
+    "web-vitals": "^0.2.4",
+    "yup": "^0.32.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -53,8 +52,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.7",
     "commitizen": "^4.2.3",
-    "cz-conventional-changelog": "3.3.0",
-    "husky": "^4.3.8"
+    "cz-conventional-changelog": "3.3.0"
   },
   "config": {
     "commitizen": {
