@@ -10,6 +10,9 @@ export {
   User,
   LogOut,
   Menu,
+  Coffee,
 } from 'styled-icons/feather';
 
-export { Close } from 'styled-icons/evil';
+export { Close, Location } from 'styled-icons/evil';
+
+export { FileText } from 'styled-icons/bootstrap';

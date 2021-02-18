@@ -33,6 +33,8 @@ export default createGlobalStyle`
     --main-green: #57E1A7;
     --gray: #383838;
     --medium-gray: #666666;
+    --intermediary-gray: #707070;
+    --soft-dark-gray: #808B86;
     --dark-gray: #515151;
     --dark-gray-transparency: rgba(81,81,81,0.92);
     --neon: #71cca6;
