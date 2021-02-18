@@ -14,4 +14,11 @@ export const Container = styled.div`
 export const Main = styled.main`
   width: 100%;
   height: 100%;
+  margin: 90px;
+  display: flex;
+  flex-wrap: wrap;
+
+  div{
+    margin-right: 50px;
+  }
 `;
