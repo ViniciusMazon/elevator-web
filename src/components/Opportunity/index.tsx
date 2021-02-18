@@ -9,7 +9,7 @@ import {
   FileTextIcon,
 } from './styles';
 
-interface IOpportunityData {
+export interface IOpportunityData {
   videoURL: string;
   role: string;
   company: string;

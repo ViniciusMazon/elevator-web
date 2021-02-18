@@ -49,7 +49,7 @@ const MenuBar: React.FC = () => {
         history.push('/');
         break;
       case 2:
-        history.push('/');
+        history.push('/my-opportunities');
         break;
       case 3:
         history.push('/');
